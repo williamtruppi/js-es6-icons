@@ -66,7 +66,7 @@ $(document).ready(function () {
   //inseriamo le icone colorate nel container
   //////////////////////////////////////////////////////////////
 
-  printColoredIconsList (iconsContainer, newIconsList)
+  printColoredIconsList (iconsContainer, newIconsList);
 
 });
 

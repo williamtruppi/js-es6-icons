@@ -66,17 +66,7 @@ $(document).ready(function () {
   // inseriamo le icone colorate nel container
   //////////////////////////////////////////////////////////////
 
-  newIconsList.forEach(element => {
-    
-    const markup = `
-    <div>
-      <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
-      <div class="title">${element.name.toUpperCase()}</div>
-    </div>
-    `;
-
-    iconsContainer.insertAdjacentHTML('beforeend', markup);
-  });
+  printColoredIconsList (iconsContainer, newIconsList);
 
   //////////////////////////////////////////////////////////////
   //  estrapoliamo i tipi di icone
@@ -124,44 +114,53 @@ $(document).ready(function () {
     if (this.value == 2){
 
       $("#icons > div").remove();
-      
-      console.log("if value 2");
 
-      animalsList.forEach(element => {
-        const markup = `
-          <div>
-            <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
-            <div class="title">${element.name.toUpperCase()}</div>
-          </div>
-        `;
-        iconsContainer.insertAdjacentHTML('beforeend', markup);
-      });
+      printColoredIconsList (iconsContainer, animalsList);
 
     } else if (this.value == 3) {
       
       $("#icons > div").remove();
-      
-      console.log("if value 3");
 
-      vegfruitList.forEach(element => {
-        const markup = `
-          <div>
-            <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
-            <div class="title">${element.name.toUpperCase()}</div>
-          </div>
-        `;
-        iconsContainer.insertAdjacentHTML('beforeend', markup);
-      });
+      printColoredIconsList (iconsContainer, vegfruitList);
+
+    } else if (this.value == 4) {
+
+      $("#icons > div").remove();
+
+      printColoredIconsList (iconsContainer, usersList);
+
+    } else {
+
+      $("#icons > div").remove();
+
+      printColoredIconsList (iconsContainer, newIconsList);
+
     }
     
   });
-
-  //mostriamo come passare un parametro a change e contemporaneamente destrutturiamo
-
 });
 
 
 /* ---- FUNCTIONS ----*/
+
+function printColoredIconsList (container, list) {
+
+  list.forEach(element => {
+
+    //destructuring
+    const {name, prefix, type, color} = element;
+
+    //markup
+    const markup = `
+    <div>
+       <i class="${prefix} ${type}" style="color:${color}"></i>
+       <div class="title">${name.toUpperCase()}</div>
+    </div>
+    `;
+
+    container.insertAdjacentHTML("beforeend", markup);
+  });
+}
 
 // Creiamo una funzione per iterare nell'array e che appenda al container le icone.
 // tip: possiamo usare un ciclo foreach qui e destrutturare gli le proprieta degli elementi di un array
