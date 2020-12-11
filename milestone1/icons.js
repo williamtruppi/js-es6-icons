@@ -34,25 +34,36 @@ $(document).ready(function () {
 
   // Selezioniamo il container icons
 
-  const icons = document.getElementById("icons");
+  const iconsContainer = document.getElementById("icons");
 
   //inseriamo le icone nel container (possiamo creare una funzione tipo print() per inserire gli elementi e richiamarla qui)
   
-  iconsList.forEach(element => {
-    const markup = `
-    <div>
-       <i class="${element.prefix} ${element.type}"></i>
-       <div class="title">${element.name.toUpperCase()}</div>
-    </div>
-    `;
-
-    icons.insertAdjacentHTML("beforeend", markup);
-  });
+  printIconsList(iconsContainer, iconsList);
+  
 
 });
 
 
 /* ---- FUNCTIONS ----*/
+
+function printIconsList (container, list) {
+
+  list.forEach(element => {
+
+    //destructuring
+    const {name, prefix, type} = element;
+
+    //markup
+    const markup = `
+    <div>
+       <i class="${prefix} ${type}"></i>
+       <div class="title">${name.toUpperCase()}</div>
+    </div>
+    `;
+
+    container.insertAdjacentHTML("beforeend", markup);
+  });
+}
 // Creiamo una funzione per iterare nell'array e che appenda al container le icone.
 // tip: possiamo usare un ciclo foreach qui e destrutturare gli le proprieta degli elementi di un array
 // tip: il template literal ci puo aiutare con il markup

@@ -118,11 +118,15 @@ $(document).ready(function () {
   //////////////////////////////////////////////////////////////
 
   selectNav.addEventListener("change", function() {
-    console.log("You selected: ", this.value);
     
-    newIconsList.style.display = "none";
+    console.log("You selected: ", this.value);
 
-    if (this.value === 2){
+    if (this.value == 2){
+
+      $("#icons > div").remove();
+      
+      console.log("if value 2");
+
       animalsList.forEach(element => {
         const markup = `
           <div>
@@ -130,7 +134,23 @@ $(document).ready(function () {
             <div class="title">${element.name.toUpperCase()}</div>
           </div>
         `;
-        animalsList.insertAdjacentHTML('beforeend', markup);
+        iconsContainer.insertAdjacentHTML('beforeend', markup);
+      });
+
+    } else if (this.value == 3) {
+      
+      $("#icons > div").remove();
+      
+      console.log("if value 3");
+
+      vegfruitList.forEach(element => {
+        const markup = `
+          <div>
+            <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
+            <div class="title">${element.name.toUpperCase()}</div>
+          </div>
+        `;
+        iconsContainer.insertAdjacentHTML('beforeend', markup);
       });
     }
     
@@ -142,6 +162,7 @@ $(document).ready(function () {
 
 
 /* ---- FUNCTIONS ----*/
+
 // Creiamo una funzione per iterare nell'array e che appenda al container le icone.
 // tip: possiamo usare un ciclo foreach qui e destrutturare gli le proprieta degli elementi di un array
 // tip: il template literal ci puo aiutare con il markup

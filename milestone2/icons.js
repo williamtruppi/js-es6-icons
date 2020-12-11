@@ -66,22 +66,31 @@ $(document).ready(function () {
   //inseriamo le icone colorate nel container
   //////////////////////////////////////////////////////////////
 
-  newIconsList.forEach(element => {
-    
-    const markup = `
-    <div>
-      <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
-      <div class="title">${element.name.toUpperCase()}</div>
-    </div>
-    `;
-
-    iconsContainer.insertAdjacentHTML('beforeend', markup);
-  });
+  printColoredIconsList (iconsContainer, newIconsList)
 
 });
 
 
 /* ---- FUNCTIONS ----*/
+
+function printColoredIconsList (container, list) {
+
+  list.forEach(element => {
+
+    //destructuring
+    const {name, prefix, type, color} = element;
+
+    //markup
+    const markup = `
+    <div>
+       <i class="${prefix} ${type}" style="color:${color}"></i>
+       <div class="title">${name.toUpperCase()}</div>
+    </div>
+    `;
+
+    container.insertAdjacentHTML("beforeend", markup);
+  });
+}
 // Creiamo una funzione per iterare nell'array e che appenda al container le icone.
 // tip: possiamo usare un ciclo foreach qui e destrutturare gli le proprieta degli elementi di un array
 // tip: il template literal ci puo aiutare con il markup
