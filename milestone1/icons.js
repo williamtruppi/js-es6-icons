@@ -1,6 +1,7 @@
 $(document).ready(function () {
   // Creiamo array di oggetti per le icone con le seguenti proprieta: 
   // name, prefix, type, family 
+
   class icone {
     constructor(name, prefix, type, family){
       this.name = name;
@@ -36,7 +37,7 @@ $(document).ready(function () {
   const icons = document.getElementById("icons");
 
   //inseriamo le icone nel container (possiamo creare una funzione tipo print() per inserire gli elementi e richiamarla qui)
-
+  
   iconsList.forEach(element => {
     const markup = `
     <div>

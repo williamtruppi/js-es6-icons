@@ -63,7 +63,7 @@ $(document).ready(function () {
   console.log(newIconsList);
 
   //////////////////////////////////////////////////////////////
-  //inseriamo le icone colorate nel container
+  // inseriamo le icone colorate nel container
   //////////////////////////////////////////////////////////////
 
   newIconsList.forEach(element => {
@@ -77,6 +77,66 @@ $(document).ready(function () {
 
     iconsContainer.insertAdjacentHTML('beforeend', markup);
   });
+
+  //////////////////////////////////////////////////////////////
+  //  estrapoliamo i tipi di icone
+  //////////////////////////////////////////////////////////////
+
+  const animalsList = newIconsList.filter((element) => {
+    return element.family === 'animals'
+  });
+  console.log(animalsList);
+
+  const vegfruitList = newIconsList.filter((element) => {
+    return element.family === 'fruits & vegetables'
+  });
+  console.log(vegfruitList);
+
+  const usersList = newIconsList.filter((element) => {
+    return element.family === 'users & people'
+  });
+  console.log(usersList);
+
+  //////////////////////////////////////////////////////////////
+  //aggiungiamo i tipi alla select
+  //////////////////////////////////////////////////////////////
+
+  const selectNav = document.getElementById("type");
+  console.log(selectNav);
+
+  const markup = `
+    <option value="2">Animals</option>
+    <option value="3">fruits & vegetables</option>
+    <option value="4">users & people</option>
+  `;
+
+  console.log(markup);
+  selectNav.insertAdjacentHTML("beforeend", markup);
+
+  //////////////////////////////////////////////////////////////
+  //al change mostriamo solo le icone filtrate
+  //////////////////////////////////////////////////////////////
+
+  selectNav.addEventListener("change", function() {
+    console.log("You selected: ", this.value);
+    
+    newIconsList.style.display = "none";
+
+    if (this.value === 2){
+      animalsList.forEach(element => {
+        const markup = `
+          <div>
+            <i class="${element.prefix} ${element.type}" style="color:${element.color}"></i>
+            <div class="title">${element.name.toUpperCase()}</div>
+          </div>
+        `;
+        animalsList.insertAdjacentHTML('beforeend', markup);
+      });
+    }
+    
+  });
+
+  //mostriamo come passare un parametro a change e contemporaneamente destrutturiamo
 
 });
 
